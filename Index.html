@@ -1,81 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-
-    <!-- Internal CSS -->
-    <style>
-        p {
-            text-align: center;
-        }
-        nav p {
-            margin-bottom: 10px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #4CAF50;
-            font-weight: bold;
-            margin: 0 8px;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #2e7d32;
-            text-decoration: underline;
-        }
-
-        footer {
-            background-color: #222;
-            color: #ccc;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            font-size: 0.9em;
-            box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
-        }
-
-        footer p {
-            margin: 0;
-        }
-    </style>
+    <title>WIP Card</title>
 </head>
 <body>
-    <header>
-        <h1>St. Teresa's School Berhampore</h1> 
-    </header>
-    <hr>
-    <p style="text-align: center;">
-        <img src="STS.jpg" alt="St. Teresa's School Berhampore" width="125" height="125">
-    </p>
-    <main>
-        <section>
-            <h2>Introduction</h2>
-            <p style="text-align: justify;">
-                <b>
-                 St. Teresa's School, Berhampore, a Catholic English Medium Educational Institution for boys and girls, 
-                 owned by Teresian Carmelite Sisters, was established in 2015.
-                 It is a minority institution but provision is also made for the admission of children irrespective of caste and creed.
-                 The Teresian Carmelites are working in India and abroad through educational centres, 
-                 orphanages and other charitable and promotional works.
-                </b>
-            </p>
-        </section>
-        <nav>
-            <p>
-                <a href="#">Home</a> |
-                <a href="About Us.html">About Us</a> |
-                <a href="Departments.html">Departments</a> |
-                <a href="#">Contact Us</a>
-            </p>
-    </main>
-    <footer>
-        <p>&copy; 2015 St. Teresa's School. All rights reserved.</p>
-    </footer>
+    <div class="wip-container">
+        <div class="wip-card">
+            <div class="wip-header">
+                <h2>Work in Progress</h2>
+                <div class="status-indicator" id="statusIndicator">●</div>
+            </div>
+            
+            <div class="wip-content">
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>Project Completion</span>
+                        <span id="progressPercent">45%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                
+                <div class="task-list">
+                    <h3>Current Tasks</h3>
+                    <ul id="taskList">
+                        <li class="task-item" data-id="1">
+                            <input type="checkbox" id="task1">
+                            <label for="task1">Design layout</label>
+                        </li>
+                        <li class="task-item" data-id="2">
+                            <input type="checkbox" id="task2">
+                            <label for="task2">Implement features</label>
+                        </li>
+                        <li class="task-item" data-id="3">
+                            <input type="checkbox" id="task3">
+                            <label for="task3">Testing phase</label>
+                        </li>
+                        <li class="task-item" data-id="4">
+                            <input type="checkbox" id="task4">
+                            <label for="task4">Documentation</label>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="wip-controls">
+                    <button id="addTaskBtn">Add Task</button>
+                    <button id="simulateProgressBtn">Simulate Progress</button>
+                </div>
+                
+                <div class="wip-footer">
+                    <div class="last-updated" id="lastUpdated">Last updated: Just now</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .wip-container {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .wip-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease;
+        }
+        
+        .wip-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .wip-header {
+            padding: 20px 24px;
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .wip-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .status-indicator {
+            font-size: 24px;
+            color: #ffcc00;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .wip-content {
+            padding: 24px;
+        }
+        
+        .progress-section {
+            margin-bottom: 24px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 45%;
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        
+        .task-list {
+            margin-bottom: 24px;
+        }
+        
+        .task-list h3 {
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        
+        .task-item input[type="checkbox"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .task-item label {
+            cursor: pointer;
+            font-size: 1rem;
+            color: #444;
+            transition: color 0.2s;
+        }
+        
+        .task-item input[type="checkbox"]:checked + label {
+            color: #888;
+            text-decoration: line-through;
+        }
+        
+        .wip-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .wip-controls button {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        #addTaskBtn {
+            background-color: #f0f4ff;
+            color: #4b6cb7;
+        }
+        
+        #addTaskBtn:hover {
+            background-color: #e1e8ff;
+        }
+        
+        #simulateProgressBtn {
+            background: linear-gradient(90deg, #4b6cb7, #182848);
+            color: white;
+        }
+        
+        #simulateProgressBtn:hover {
+            opacity: 0.9;
+        }
+        
+        .wip-footer {
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFill = document.getElementById('progressFill');
+            const progressPercent = document.getElementById('progressPercent');
+            const taskList = document.getElementById('taskList');
+            const addTaskBtn = document.getElementById('addTaskBtn');
+            const simulateProgressBtn = document.getElementById('simulateProgressBtn');
+            const statusIndicator = document.getElementById('statusIndicator');
+            const lastUpdated = document.getElementById('lastUpdated');
+            
+            let tasks = [
+                { id: 1, text: "Design layout", completed: false },
+                { id: 2, text: "Implement features", completed: false },
+                { id: 3, text: "Testing phase", completed: false },
+                { id: 4, text: "Documentation", completed: false }
+            ];
+            
+            let progress = 45;
+            
+            // Update progress display
+            function updateProgress() {
+                progressFill.style.width = `${progress}%`;
+                progressPercent.textContent = `${progress}%`;
+                
+                // Update status indicator color
+                if (progress < 30) {
+                    statusIndicator.style.color = '#ff4444';
+                } else if (progress < 70) {
+                    statusIndicator.style.color = '#ffcc00';
+                } else {
+                    statusIndicator.style.color = '#44cc44';
+                }
+                
+                updateLastUpdated();
+            }
+            
+            // Calculate progress based on completed tasks
+            function calculateProgress() {
+                const completedTasks = tasks.filter(task => task.completed).length;
+                progress = Math.floor((completedTasks / tasks.length) * 100);
+                updateProgress();
+            }
+            
+            // Update last updated timestamp
+            function updateLastUpdated() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                lastUpdated.textContent = `Last updated: ${timeString}`;
+            }
+            
+            // Add a new task
+            function addNewTask() {
+                const taskText = prompt("Enter new task:");
+                if (!taskText || taskText.trim() === "") return;
+                
+                const newId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
+                const newTask = {
+                    id: newId,
+                    text: taskText.trim(),
+                    completed: false
+                };
+                
+                tasks.push(newTask);
+                renderTasks();
+                calculateProgress();
+            }
+            
+            // Simulate progress increase
+            function simulateProgress() {
+                if (progress >= 100) {
+                    progress = 0;
+                    // Reset all tasks
+                    tasks.forEach(task => task.completed = false);
+                    renderTasks();
+                } else {
+                    // Randomly complete some tasks
+                    tasks.forEach(task => {
+                        if (!task.completed && Math.random() > 0.7) {
+                            task.completed = true;
+                        }
+                    });
+                    renderTasks();
+                    calculateProgress();
+                }
+            }
+            
+            // Render task list
+            function renderTasks() {
+                taskList.innerHTML = '';
+                
+                tasks.forEach(task => {
+                    const li = document.createElement('li');
+                    li.className = 'task-item';
+                    li.dataset.id = task.id;
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.id = `task${task.id}`;
+                    checkbox.checked = task.completed;
+                    checkbox.addEventListener('change', () => {
+                        task.completed = checkbox.checked;
+                        calculateProgress();
+                    });
+                    
+                    const label = document.createElement('label');
+                    label.htmlFor = `task${task.id}`;
+                    label.textContent = task.text;
+                    
+                    li.appendChild(checkbox);
+                    li.appendChild(label);
+                    taskList.appendChild(li);
+                });
+            }
+            
+            // Event listeners
+            addTaskBtn.addEventListener('click', addNewTask);
+            simulateProgressBtn.addEventListener('click', simulateProgress);
+            
+            // Initialize
+            renderTasks();
+            updateProgress();
+            
+            // Simulate a small animation on load
+            setTimeout(() => {
+                progressFill.style.transition = 'width 1.5s ease';
+            }, 300);
+        });
+    </script>
 </body>
 </html>
