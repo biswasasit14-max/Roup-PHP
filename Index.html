@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Gradient Index Card</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <!-- Animated gradient background -->
+            <div class="gradient-bg"></div>
+            <div class="gradient-tail"></div>
+            
+            <!-- Card content -->
+            <div class="card-content">
+                <div class="card-header">
+                    <h1 class="title">Example Index</h1>
+                    <p class="subtitle">Interactive links with animated gradient</p>
+                </div>
+                
+                <div class="links-container">
+                    <div class="link-group">
+                        <h3>Design Examples</h3>
+                        <a href="#ui-design" class="link-card">
+                            <span class="link-icon">🎨</span>
+                            <div class="link-info">
+                                <div class="link-title">UI Design</div>
+                                <div class="link-desc">Modern interface examples</div>
+                            </div>
+                        </a>
+                        <a href="#animations" class="link-card">
+                            <span class="link-icon">✨</span>
+                            <div class="link-info">
+                                <div class="link-title">Animations</div>
+                                <div class="link-desc">CSS & JS animations</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Development</h3>
+                        <a href="#components" class="link-card">
+                            <span class="link-icon">🧩</span>
+                            <div class="link-info">
+                                <div class="link-title">Components</div>
+                                <div class="link-desc">Reusable UI elements</div>
+                            </div>
+                        </a>
+                        <a href="#templates" class="link-card">
+                            <span class="link-icon">📄</span>
+                            <div class="link-info">
+                                <div class="link-title">Templates</div>
+                                <div class="link-desc">Ready-to-use layouts</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="link-group">
+                        <h3>Resources</h3>
+                        <a href="#tutorials" class="link-card">
+                            <span class="link-icon">📚</span>
+                            <div class="link-info">
+                                <div class="link-title">Tutorials</div>
+                                <div class="link-desc">Step-by-step guides</div>
+                            </div>
+                        </a>
+                        <a href="#showcase" class="link-card">
+                            <span class="link-icon">🌟</span>
+                            <div class="link-info">
+                                <div class="link-title">Showcase</div>
+                                <div class="link-desc">Inspiration gallery</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <button class="refresh-btn">⟳ Refresh Animation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .card {
+            background: rgba(20, 20, 30, 0.85);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animated conic gradient background */
+        .gradient-bg {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+                from 0deg at 50% 50%,
+                #ff0080,
+                #ff8c00,
+                #40e0d0,
+                #ff0080
+            );
+            animation: rotateGradient 15s linear infinite;
+            z-index: 0;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+        
+        /* Animated tail following cursor */
+        .gradient-tail {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ff0080 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(30px);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1;
+            transition: opacity 0.3s;
+        }
+        
+        /* Card content */
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .title {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #ff8c00, #40e0d0, #ff0080);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+        
+        .links-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .link-group h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(255, 140, 0, 0.3);
+        }
+        
+        .link-card {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .link-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 140, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 140, 0, 0.1);
+        }
+        
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .link-card:hover::before {
+            left: 100%;
+        }
+        
+        .link-icon {
+            font-size: 1.8rem;
+            margin-right: 16px;
+            min-width: 40px;
+        }
+        
+        .link-info {
+            flex: 1;
+        }
+        
+        .link-title {
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .link-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .card-footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .refresh-btn {
+            background: linear-gradient(90deg, #ff0080, #ff8c00);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 140, 0, 0.3);
+        }
+        
+        .refresh-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+        
+        /* Animations */
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .links-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.card');
+            const tail = document.querySelector('.gradient-tail');
+            const refreshBtn = document.querySelector('.refresh-btn');
+            const links = document.querySelectorAll('.link-card');
+            const gradientBg = document.querySelector('.gradient-bg');
+            
+            // Mouse move effect for gradient tail
+            let mouseX = 0;
+            let mouseY = 0;
+            let tailX = 0;
+            let tailY = 0;
+            let isMoving = false;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                
+                if (!isMoving) {
+                    tail.style.opacity = '0.6';
+                    isMoving = true;
+                }
+            });
+            
+            // Animation loop for smooth tail movement
+            function animateTail() {
+                const cardRect = card.getBoundingClientRect();
+                
+                // Only animate tail if mouse is over card
+                if (mouseX >= cardRect.left && mouseX <= cardRect.right &&
+                    mouseY >= cardRect.top && mouseY <= cardRect.bottom) {
+                    
+                    // Smooth interpolation for tail position
+                    tailX += (mouseX - tailX - 100) * 0.1;
+                    tailY += (mouseY - tailY - 100) * 0.1;
+                    
+                    tail.style.left = `${tailX}px`;
+                    tail.style.top = `${tailY}px`;
+                    tail.style.opacity = '0.6';
+                } else {
+                    tail.style.opacity = '0';
+                }
+                
+                requestAnimationFrame(animateTail);
+            }
+            
+            // Initialize tail position
+            tailX = window.innerWidth / 2;
+            tailY = window.innerHeight / 2;
+            tail.style.left = `${tailX}px`;
+            tail.style.top = `${tailY}px`;
+            
+            // Start animation
+            animateTail();
+            
+            // Refresh animation button
+            refreshBtn.addEventListener('click', function() {
+                // Reset gradient animation
+                gradientBg.style.animation = 'none';
+                void gradientBg.offsetWidth; // Trigger reflow
+                gradientBg.style.animation = 'rotateGradient 15s linear infinite';
+                
+                // Add click effect to button
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // Randomize gradient colors
+                const hue1 = Math.floor(Math.random() * 360);
+                const hue2 = (hue1 + 120) % 360;
+                const hue3 = (hue1 + 240) % 360;
+                
+                gradientBg.style.background = `conic-gradient(
+                    from 0deg at 50% 50%,
+                    hsl(${hue1}, 100%, 60%),
+                    hsl(${hue2}, 100%, 60%),
+                    hsl(${hue3}, 100%, 60%),
+                    hsl(${hue1}, 100%, 60%)
+                )`;
+                
+                // Update title gradient
+                document.querySelector('.title').style.background = 
+                    `linear-gradient(90deg, hsl(${hue1}, 100%, 60%), hsl(${hue2}, 100%, 60%), hsl(${hue3}, 100%, 60%))`;
+            });
+            
+            // Link hover effects
+            links.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    const hue = Math.floor(Math.random() * 360);
+                    this.style.borderColor = `hsla(${hue}, 100%, 60%, 0.5)`;
+                    this.style.boxShadow = `0 10px 25px hsla(${hue}, 100%, 60%, 0.2)`;
+                });
+                
+                link.addEventListener('mouseleave', function() {
+                    this.style.borderColor = '';
+                    this.style.boxShadow = '';
+                });
+                
+                // Add click handler for demo purposes
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    ripple.style.width = ripple.style.height = `${size}px`;
+                    ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+                    ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+                    ripple.style.background = 'rgba(255, 255, 255, 0.2)';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.position = 'absolute';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                    
+                    // Simulate page navigation
+                    const title = this.querySelector('.link-title').textContent;
+                    console.log(`Navigating to: ${title}`);
+                    
+                    // Update subtitle to show clicked link
+                    document.querySelector('.subtitle').textContent = 
+                        `Clicked: ${title} - Loading example...`;
+                    
+                    setTimeout(() => {
+                        document.querySelector('.subtitle').textContent = 
+                            'Interactive links with animated gradient';
+                    }, 1500);
+                });
+            });
+            
+            // Add CSS for ripple animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    from {
+                        transform: scale(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
