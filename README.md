@@ -5,19 +5,15 @@ A secure, scalable PHP authentication system with MySQL database, IP blocking, a
 ## Features
 
 - 🔐 Secure user authentication with password hashing
-- 🛡️ IP blocking and rate limiting
 - 👥 Role-based access control (Admin, User, Moderator)
-- 📊 IP management dashboard
 - 📝 User registration and management
 - 🔄 Session management with timeout
-- 🌍 IP geolocation lookup
-- 📈 Activity logging and monitoring
 
 ## Requirements
 
 - PHP 7.4 or higher
 - MySQL 5.7 or higher
-- PDO extension
+- PDO extension (may be required, see the file linked on website)
 - JSON extension
 - Session extension
 
